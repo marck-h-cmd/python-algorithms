@@ -51,7 +51,6 @@ def main():
     
     mostrar_resultados(estudiantes, promedios_estudiantes)
     
-    return promedios_estudiantes
 
 
 main()

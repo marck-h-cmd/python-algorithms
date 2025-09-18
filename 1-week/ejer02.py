@@ -16,11 +16,7 @@ def buscar_estudiante(estudiantes, nombre):
             return estudiante[1]
     return None
 
-def main():
-    estudiantes = ingresar_estudiantes()
-    
-    estudiantes.sort(key=lambda x: x[0])
-    
+def mostrar_resultado(estudiantes):
     print("\nLISTA ORDENADA ALFABÉTICAMENTE:")
     for nombre, nota in estudiantes:
         print(f"{nombre}: {nota:.2f}")
@@ -32,5 +28,12 @@ def main():
         print(f"Nota de {nombre_buscar.title()}: {nota:.2f}")
     else:
         print("Estudiante no encontrado")
+
+def main():
+    estudiantes = ingresar_estudiantes()
+    
+    estudiantes.sort(key=lambda x: x[0])
+    
+    mostrar_resultado()
 
 main()
