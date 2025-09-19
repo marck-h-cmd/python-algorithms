@@ -1,10 +1,21 @@
 def ingresar_estudiantes():
     estudiantes = []
-    n = int(input("¿Cuántos estudiantes desea ingresar? "))
-    
+    while True:
+        n = int(input("¿Cuántos estudiantes desea ingresar? "))
+        if n<=0:
+            print('El número no es valido')
+            continue
+        else:
+            break
     for i in range(n):
         nombre = input(f"\nNombre del estudiante {i + 1}: ").title()
-        nota = float(input("Nota del estudiante: "))
+        while True:
+            nota = float(input("Nota del estudiante: "))
+            if 0 <= nota <= 20:  
+                break
+            else:
+                print('Ingrese calificación valida')
+            continue
         estudiantes.append((nombre, nota))
     
     return estudiantes
@@ -15,6 +26,13 @@ def buscar_estudiante(estudiantes, nombre):
         if estudiante[0] == nombre:
             return estudiante[1]
     return None
+
+def ordenar_alfabeticamente(estudiantes):
+    for i in range(len(estudiantes)):
+        for j in range(i + 1, len(estudiantes)):
+            if estudiantes[i][0] > estudiantes[j][0]:
+                estudiantes[i], estudiantes[j] = estudiantes[j], estudiantes[i]
+    return estudiantes
 
 def mostrar_resultado(estudiantes):
     print("\nLISTA ORDENADA ALFABÉTICAMENTE:")
@@ -32,8 +50,8 @@ def mostrar_resultado(estudiantes):
 def main():
     estudiantes = ingresar_estudiantes()
     
-    estudiantes.sort(key=lambda x: x[0])
+    estudiantes = ordenar_alfabeticamente(estudiantes)
     
-    mostrar_resultado()
+    mostrar_resultado(estudiantes)
 
 main()
